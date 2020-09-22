@@ -1,3 +1,4 @@
+(define base 14)
 (define zero
   (lambda () (list 0)))
 
@@ -13,13 +14,13 @@
   (lambda (n)
     (cond
       ((null? n) '())
-      ((< (car n) 15) ;less than 15
+      ((< (car n) (- base 1)) ;less than base
        (if (eq? (length n) 1)
            (append (list (+ (car n) 1))'())
            (append (list (+ (car n) 1))(cdr n))))
                
            
-      ((eq? (car n) 15) ;equal to 15
+      ((eq? (car n) (- base 1)) ;equal to base
        (if (eq? (length n) 1)
            (append (list 0 1)(successor (cdr n)))
            (append (list 0)(successor (cdr n)))))
@@ -37,16 +38,10 @@
       ((eq? (car n) 0) ;equal to 0
        (if (eq? (length n) 1)
            '()
-           (append (list 15)(pred-helper (cdr n))))))))
+           (append (list (- base 1))(pred-helper (cdr n))))))))
     
 (define predecessor
   (lambda (n)
     (if (and (= (car n) 1)(eq? (length n) 1))
         (zero)
         (pred-helper n))))
-    
-    
-
-
-
-
