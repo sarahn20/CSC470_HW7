@@ -1,4 +1,4 @@
-(define base 14)
+(define base 16)
 (define zero
   (lambda () (list 0)))
 
